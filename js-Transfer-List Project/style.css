@@ -1,0 +1,49 @@
+.header{
+    margin:30px;
+    text-align:center;
+    font-size: 20px;
+    font-weight: 700;
+}
+hr{
+    opacity:0.2;
+}
+.main{
+    width:80%;
+    display:flex;
+    justify-content: space-between;
+    /* height:200px; */
+    margin:auto;
+    /* background-color: grey; */
+}
+#firstBox, #middleBox, #lastBox{
+    display:flex;
+    flex-direction: column;
+    /* background-color: aliceblue; */
+    border:2px solid grey;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:20px;
+}
+#firstBox, #lastBox{
+    width:45%;
+}
+#middleBox{
+    width:10%;
+    border-left:none;
+    border-right:none;
+    display:flex;   
+    justify-content: flex-start;
+    align-items: center;
+    padding-top:20px;
+    gap:15px;
+}
+input{
+    margin:15px;
+}
+button{
+    width:40px;
+    font-size: 15px;
+    cursor:pointer;
+}
+/* #ltButton, #gtButton{
+cursor:not-allowed;
+} */

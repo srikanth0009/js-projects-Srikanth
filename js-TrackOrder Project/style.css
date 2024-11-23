@@ -1,0 +1,89 @@
+
+*{
+    box-sizing: border-box;
+}
+body{
+    margin:0px;
+}
+.header{
+    text-align: center;
+    margin-top:30px;
+    margin-bottom:30px;
+    font-size:20px;
+    font-weight: 600;
+}
+hr{
+    width:100%;
+    opacity:0.5;
+    height:5px;
+    background-color: rgb(185, 188, 190);
+    border:none;
+}
+
+.main{
+    height:60px;
+    display:flex;
+    gap:0px;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-right:30px;
+    margin-left:30px;
+    
+}
+ #first, #second, #third, #fourth{
+    width:40px;
+    height:40px;
+    background-color: rgb(188, 181, 181);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 25px;
+    border:1px solid black;
+}
+#first{
+    background-color: blueviolet;
+    color:white;
+}
+
+ #line1, #line2, #line3{
+    width:430px;
+    height:5px;
+    background-color: grey;
+    margin-bottom:18px;
+}
+
+.details{
+    height:30px;
+    display:flex;
+    justify-content: space-between;
+    padding-right:20px;
+}
+.details div{
+    font-size: 15px;
+}
+.buttons{
+    display:flex;
+    justify-content: center;
+    gap:80px;
+}
+.buttons button{
+    background-color: rgb(188, 181, 181);
+    padding:10px 20px ;
+    border-radius: 5px;
+    color:black;
+    font-size:20px;
+    border:2px solid grey;
+}
+#cnt{
+    text-align: center;
+    font-weight: 700;
+    font-size:20px;
+}
+
+.inactive {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .active {
+    opacity: 1;
+    /* cursor: pointer; */
+  }
