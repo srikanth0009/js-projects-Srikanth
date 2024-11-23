@@ -1,185 +1,116 @@
-const firstDivElements = document.getElementById('firstBox');
-const firstDiv = firstDivElements.querySelectorAll('input');
+const leftCheckboxes = document.querySelectorAll(".leftSideButtons");
+const rightCheckboxes = document.querySelectorAll(".rightSideButtons");
+const greaterThanButton = document.getElementById("gtButton");
+const lessThanButton = document.getElementById("ltButton");
+const doubleGreaterThanButton = document.getElementById("doubleGtButton");
+const doubleLessThanButton = document.getElementById("doubleLtButton");
 
-// if(firstDiv.length === 0){
-//     const getButton = document.getElementById('doubleGtButton');
-//     getButton.style.opacity = 0.5;
-// }
+function updateGreaterThanButton() {
+    const anyLeftChecked = Array.from(document.querySelectorAll('.leftSideButtons:checked'));
+    greaterThanButton.disabled = anyLeftChecked.length === 0;
+}
 
+function updateLessThanButton() {
+    const anyRightChecked = Array.from(document.querySelectorAll('.rightSideButtons:checked'));
+    lessThanButton.disabled = anyRightChecked.length === 0;
+}
 
-let gtValues = document.getElementById('gtButton');
+leftCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", updateGreaterThanButton);
+});
 
-//gtValues.addEventListener('click',getData('gtButton'));
+rightCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", updateLessThanButton);
+});
 
+updateGreaterThanButton();
+updateLessThanButton();
 
-gtValues.addEventListener('click', () => {
+greaterThanButton.addEventListener('click', () => {
+    enableButton('doubleLtButton');
 
-    const getButton = document.getElementById('doubleLtButton');
-        getButton.style.opacity = 1;
-        getButton.style.cursor='pointer';
-
-
-    const checkedBoxes = document.querySelectorAll('.options1:checked');
-    console.log(checkedBoxes);
-
+    const checkedBoxes = document.querySelectorAll('.leftSideButtons:checked');
     const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
-    console.log(selectedValues);
 
-    checkedBoxes.forEach((item) => {
-        const parent = item.parentNode;
-        parent.remove();
-    })
-
+    checkedBoxes.forEach(item => item.parentNode.remove());
     addValues(selectedValues, 'lastBox');
 
-    const firstDivElements = document.getElementById('firstBox');
-    const firstDiv = firstDivElements.querySelectorAll('input');
-
-    if (firstDiv.length === 0) {
-        const getButton = document.getElementById('doubleGtButton');
-        getButton.style.opacity = 0.5;
-        getButton.style.cursor='not-allowed';
+    if (document.querySelectorAll('.leftSideButtons').length === 0) {
+        disableButton('doubleGtButton');
     }
 
+    greaterThanButton.disabled = true;
 });
 
-let ltValues = document.getElementById('ltButton');
+lessThanButton.addEventListener('click', () => {
+    enableButton('doubleGtButton');
 
-ltValues.addEventListener('click', () => {
-
-
-    const getButton = document.getElementById('doubleGtButton');
-        getButton.style.opacity = 1;
-        getButton.style.cursor='pointer';
-
-
-    const checkedBoxes = document.querySelectorAll('.options2:checked');
-    console.log(checkedBoxes);
-
+    const checkedBoxes = document.querySelectorAll('.rightSideButtons:checked');
     const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
-    console.log(selectedValues);
 
-    checkedBoxes.forEach((item) => {
-        const parent = item.parentNode;
-        parent.remove();
-    })
-
+    checkedBoxes.forEach(item => item.parentNode.remove());
     addValues(selectedValues, 'firstBox');
 
-    const firstDivElements = document.getElementById('lastBox');
-    const firstDiv = firstDivElements.querySelectorAll('input');
-
-    if (firstDiv.length === 0) {
-        const getButton = document.getElementById('doubleLtButton');
-        getButton.style.opacity = 0.5;
-        getButton.style.cursor='not-allowed';
+    if (document.querySelectorAll('.rightSideButtons').length === 0) {
+        disableButton('doubleLtButton');
     }
 
+    lessThanButton.disabled = true;
 });
 
-let doubleLtValues = document.getElementById('doubleLtButton');
+doubleGreaterThanButton.addEventListener('click', () => {
+    enableButton('doubleLtButton');
+    moveAllItems('leftSideButtons', 'lastBox');
 
-doubleLtValues.addEventListener('click', () => {
-
-    const getButton = document.getElementById('doubleGtButton');
-        getButton.style.opacity = 1;
-        getButton.style.cursor='pointer';
-
-
-    const checkedBoxes = document.querySelectorAll('.options2');
-    console.log(checkedBoxes);
-
-    const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
-    console.log(selectedValues);
-
-    checkedBoxes.forEach((item) => {
-        const parent = item.parentNode;
-        parent.remove();
-    })
-
-    addValues(selectedValues, 'firstBox');
-
-    const firstDivElements = document.getElementById('lastBox');
-    const firstDiv = firstDivElements.querySelectorAll('input');
-
-    if (firstDiv.length === 0) {
-        const getButton = document.getElementById('doubleLtButton');
-        getButton.style.opacity = 0.5;
-        getButton.style.cursor='not-allowed';
+    if (document.querySelectorAll('.leftSideButtons').length === 0) {
+        disableButton('doubleGtButton');
     }
-
 });
 
-let doubleGtValues = document.getElementById('doubleGtButton');
+doubleLessThanButton.addEventListener('click', () => {
+    enableButton('doubleGtButton');
+    moveAllItems('rightSideButtons', 'firstBox');
 
-doubleGtValues.addEventListener('click', () => {
-
-    const getButton = document.getElementById('doubleLtButton');
-        getButton.style.opacity = 1;
-        getButton.style.cursor='pointer';
-
-
-    const checkedBoxes = document.querySelectorAll('.options1');
-    console.log(checkedBoxes);
-
-    const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
-    console.log(selectedValues);
-
-    checkedBoxes.forEach((item) => {
-        const parent = item.parentNode;
-        parent.remove();
-    })
-
-    addValues(selectedValues, 'lastBox');
-
-    const firstDivElements = document.getElementById('firstBox');
-    const firstDiv = firstDivElements.querySelectorAll('input');
-
-    if (firstDiv.length === 0) {
-        const getButton = document.getElementById('doubleGtButton');
-        getButton.style.opacity = 0.5;
-        getButton.style.cursor='not-allowed';
+    if (document.querySelectorAll('.rightSideButtons').length === 0) {
+        disableButton('doubleLtButton');
     }
-
 });
 
+function moveAllItems(sourceClass, targetBox) {
+    const allCheckboxes = document.querySelectorAll(`.${sourceClass}`);
+    const selectedValues = Array.from(allCheckboxes).map(cb => cb.value);
 
-// function getEventListener(buttonType){
+    allCheckboxes.forEach(item => item.parentNode.remove());
+    addValues(selectedValues, targetBox);
+}
 
-//     const checkedBoxes = document.querySelectorAll('.options:checked');
-//     console.log(checkedBoxes);
-
-//     const selectedValues = Array.from(checkedBoxes).map(cb => cb.value);
-//     console.log(selectedValues);
-
-//     checkedBoxes.forEach((item)=>{
-//         const parent = item.parentNode;
-//         parent.remove();
-//     });
-
-//     if(buttonType === 'gtButton'){
-//         addValues(selectedValues,'firstBox');
-//     }else{
-//         addValues(selectedValues,'lastBox');
-//     }
-// }
 
 function addValues(array, boxType) {
-
     for (let x of array) {
-
-        let f = document.getElementById(boxType);
-        let ele = document.createElement('label');
+        const f = document.getElementById(boxType);
+        const ele = document.createElement('label');
         if (boxType === 'firstBox') {
-            ele.innerHTML = `<input type="checkbox" class="options1" value = ${x} > ${x}`;
+            ele.innerHTML = `<input type="checkbox" class="leftSideButtons" value="${x}"> ${x}`;
+            ele.querySelector('input').addEventListener('change', updateGreaterThanButton);
         } else {
-            ele.innerHTML = `<input type="checkbox" class="options2" value = ${x} > ${x}`;
+            ele.innerHTML = `<input type="checkbox" class="rightSideButtons" value="${x}"> ${x}`;
+            ele.querySelector('input').addEventListener('change', updateLessThanButton);
         }
-
         f.appendChild(ele);
     }
 }
 
+function enableButton(buttonName) {
+    const button = document.getElementById(buttonName);
+    button.classList.remove('disabled');
+    button.disabled = false;
+}
+
+function disableButton(buttonName) {
+    const button = document.getElementById(buttonName);
+    button.classList.add('disabled');
+    button.disabled = true;
+}
 
 
 
