@@ -111,9 +111,9 @@ document.querySelector(".goToPlanPage").addEventListener('click', () => {
 })
 
 
-let selectedPlanKey = "arcade"; // Default selected plan
-let selectedAddOnKeys = []; // Default no add-on selected
-let isYearly = false; // Default billing cycle
+let selectedPlanKey = "arcade"; 
+let selectedAddOnKeys = []; 
+let isYearly = false; 
 
 const planNameAndCosts = {
   arcade: { name: "Arcade (Monthly)", cost: "$9/mo" },
@@ -130,29 +130,24 @@ const addOnsCosts = {
   customizeProfile: { monthly: "+$2/m", yearly: "+$20/y" },
 };
 
-// Function to update the finish-up page for the selected plan
 
 function finishUpPage(plan) {
   document.querySelector(".finishup-plan-name").textContent = plan.name;
   document.querySelector(".finishup-plan-cost").textContent = plan.cost;
 }
 
-// Function to handle plan selection
 
 function switchPlan(planKey) {
   selectedPlanKey = planKey;
 
-  // Remove border from all plans and add to the selected plan
   document.querySelectorAll(".arcade, .advanced, .pro").forEach(plan => {
     plan.classList.remove("border-black");
   });
   document.querySelector(`.${planKey}`).classList.add("border-black");
 
-  // Update the finish-up page details
   finishUpPage(planNameAndCosts[planKey]);
 }
 
-// Function to update plan costs based on billing cycle
 function updatePlanCosts() {
   document.querySelectorAll(".cost").forEach((option, index) => {
     const cost = isYearly ? yearlyCost[index] : monthlyCost[index];
@@ -160,7 +155,6 @@ function updatePlanCosts() {
     option.nextElementSibling.classList.toggle("invisible", !isYearly);
 
 
-    // Update the global plan details
     if (index === 0) planNameAndCosts.arcade.cost = cost;
     if (index === 1) planNameAndCosts.advanced.cost = cost;
     if (index === 2) planNameAndCosts.pro.cost = cost;
@@ -170,7 +164,6 @@ function updatePlanCosts() {
     planNameAndCosts[key].name = `${key.charAt(0).toUpperCase() + key.slice(1)} (${isYearly ? "Yearly" : "Monthly"})`;
   });
 
-  // Automatically update the finish-up page with the current selected plan
   finishUpPage(planNameAndCosts[selectedPlanKey]);
 
 }
@@ -183,13 +176,13 @@ function updateFinishUpAddOns(planKey, isChecked) {
   console.log(costElement.textContent);
 
   if (isChecked) {
-    // Show the add-on in the Finish-up page
+
     finishUpElement.classList.remove("hidden");
-    // Update the cost based on the billing cycle
+
     costElement.textContent = isYearly ? addOnsCosts[planKey].yearly : addOnsCosts[planKey].monthly;
     console.log(costElement.textContent);
   } else {
-    // Hide the add-on in the Finish-up page
+
     finishUpElement.classList.add("hidden");
   }
   finishupPageFinalCostUpdate();
@@ -251,7 +244,6 @@ document.querySelectorAll(".add-ons input[type='checkbox']").forEach(checkbox =>
   });
 });
 
-//finishup page total cost update
 function finishupPageFinalCostUpdate() {
 
   const finalCost = document.querySelectorAll(".finishupcost");
