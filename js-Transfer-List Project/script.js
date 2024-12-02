@@ -102,13 +102,13 @@ function addValues(array, boxType) {
 
 function enableButton(buttonName) {
     const button = document.getElementById(buttonName);
-    button.classList.remove('disabled');
+    //button.classList.remove('disabled');
     button.disabled = false;
 }
 
 function disableButton(buttonName) {
     const button = document.getElementById(buttonName);
-    button.classList.add('disabled');
+    //button.classList.add('disabled');
     button.disabled = true;
 }
 

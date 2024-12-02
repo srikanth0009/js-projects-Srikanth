@@ -79,11 +79,10 @@ hr{
     font-size:20px;
 }
 
-.inactive {
+/* .inactive {
     opacity: 0.5;
     cursor: not-allowed;
   }
   .active {
     opacity: 1;
-    /* cursor: pointer; */
-  }
+  } */
